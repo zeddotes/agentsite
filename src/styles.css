@@ -1,0 +1,256 @@
+/* Agentsite dual-surface defaults.
+ *
+ * When [data-content-visible="false"] on .agentsite-site:
+ * - Human gate is visible
+ * - Agent page body stays in DOM but is visually subdued / screen-reader accessible
+ *   for agents; humans see primarily the interstitial.
+ *
+ * When contentVisible / data-content-visible="true":
+ * - Full UI is visible for admin/dev authoring.
+ */
+
+.agentsite-site {
+  --agentsite-bg: #0f1210;
+  --agentsite-fg: #e8ece6;
+  --agentsite-muted: #9aa396;
+  --agentsite-accent: #7cb342;
+  --agentsite-border: #2a312c;
+  --agentsite-human-bg: #161a17;
+  font-family: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+  color: var(--agentsite-fg);
+  background: var(--agentsite-bg);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.agentsite-human-gate {
+  background: var(--agentsite-human-bg);
+  border-bottom: 1px solid var(--agentsite-border);
+  padding: 1.5rem 1.25rem;
+  max-width: 40rem;
+}
+
+.agentsite-human-gate__message {
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+
+.agentsite-human-gate__hint,
+.agentsite-human-gate__site {
+  color: var(--agentsite-muted);
+  font-size: 0.85rem;
+  margin: 0.35rem 0 0;
+}
+
+.agentsite-human-gate__prompt {
+  margin-top: 1rem;
+}
+
+.agentsite-human-gate__code {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem;
+  background: #0a0c0b;
+  border: 1px solid var(--agentsite-border);
+  color: var(--agentsite-accent);
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agentsite-human-gate__copy {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--agentsite-border);
+  color: var(--agentsite-fg);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.agentsite-human-gate__copy:hover {
+  border-color: var(--agentsite-accent);
+  color: var(--agentsite-accent);
+}
+
+.agentsite-page {
+  padding: 1.25rem;
+}
+
+.agentsite-page__title {
+  font-size: 1.35rem;
+  margin: 0 0 0.5rem;
+  color: var(--agentsite-accent);
+}
+
+.agentsite-page__description {
+  color: var(--agentsite-muted);
+  margin: 0 0 1rem;
+}
+
+.agentsite-sitemap__list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.agentsite-sitemap__list li {
+  border-top: 1px solid var(--agentsite-border);
+  padding: 0.75rem 0;
+}
+
+.agentsite-sitemap__list a {
+  color: var(--agentsite-fg);
+  text-decoration: none;
+}
+
+.agentsite-sitemap__list a:hover {
+  color: var(--agentsite-accent);
+}
+
+.agentsite-sitemap__desc {
+  margin: 0.25rem 0 0;
+  color: var(--agentsite-muted);
+  font-size: 0.85rem;
+}
+
+.agentsite-sitemap__auth {
+  color: var(--agentsite-muted);
+  font-weight: normal;
+}
+
+.agentsite-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--agentsite-accent);
+  margin: 0.25rem 0.5rem 0.25rem 0;
+}
+
+.agentsite-action--form {
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--agentsite-border);
+  padding: 0.75rem;
+}
+
+.agentsite-action__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.agentsite-gate {
+  border: 1px solid var(--agentsite-border);
+  padding: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.agentsite-gate__blocked {
+  color: #e57373;
+  margin: 0 0 0.5rem;
+}
+
+.agentsite-gate[data-open="false"] .agentsite-gate__body {
+  opacity: 0.45;
+}
+
+/* --- Agent takeover surfaces (Shovels-style) --- */
+
+.agentsite-preamble {
+  border: 1px solid var(--agentsite-border);
+  background: var(--agentsite-human-bg);
+  padding: 1rem 1.25rem;
+  margin: 0 0 1rem;
+  max-width: 48rem;
+}
+
+.agentsite-preamble__body {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.agentsite-preamble__skill,
+.agentsite-preamble__map {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--agentsite-muted);
+}
+
+.agentsite-preamble a {
+  color: var(--agentsite-accent);
+}
+
+.agentsite-visual-gate {
+  margin: 1rem 0;
+}
+
+.agentsite-visual-gate__lock {
+  margin-bottom: 1rem;
+}
+
+.agentsite-visual-gate__title {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #e57373;
+}
+
+.agentsite-visual-gate__subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--agentsite-muted);
+}
+
+.agentsite-visual-gate__body[data-blurred="true"] {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.agentsite-reverse-captcha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--agentsite-border);
+  max-width: 28rem;
+  cursor: pointer;
+}
+
+.agentsite-reverse-captcha__label {
+  font-weight: 600;
+}
+
+.agentsite-reverse-captcha__hint {
+  width: 100%;
+  font-size: 0.75rem;
+  color: var(--agentsite-muted);
+}
+
+/* Dual surface: clip only top-level page-body children that aren't human surfaces.
+ * Descendants of VisualGate stay in the DOM (blurred) so agents can read them.
+ */
+.agentsite-site[data-content-visible="false"] .agentsite-page__header,
+.agentsite-site[data-content-visible="false"] .agentsite-page__body > *:not([data-agentsite="human-gate"]):not([data-agentsite="preamble"]):not([data-agentsite="visual-gate"]):not([data-agentsite="reverse-captcha"]):not([data-agentsite="json-twin"]):not([data-agentsite="skill"]):not(script) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.agentsite-site[data-content-visible="false"] script[data-agentsite="json-twin"] {
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  clip: auto !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+}

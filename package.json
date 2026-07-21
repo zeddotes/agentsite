@@ -1,0 +1,74 @@
+{
+  "name": "agentsite",
+  "version": "0.1.0",
+  "description": "React primitives for authoring agent-first websites",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./payload": {
+      "types": "./dist/payload.d.ts",
+      "import": "./dist/payload.js",
+      "require": "./dist/payload.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "tsup && cp src/styles.css dist/styles.css && node scripts/inject-use-client.mjs dist/index.js dist/index.cjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "tsup --watch",
+    "prepublishOnly": "npm run test && npm run typecheck && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "jsdom": "^26.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.4"
+  },
+  "keywords": [
+    "agentsite",
+    "agent",
+    "ai-agent",
+    "react",
+    "agent-first",
+    "sitemap",
+    "json-twin",
+    "dual-surface"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeddotes/agentsite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zeddotes/agentsite/issues"
+  },
+  "homepage": "https://github.com/zeddotes/agentsite#readme",
+  "author": "zeddotes"
+}

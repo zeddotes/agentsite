@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+examples/basic/node_modules/
+examples/basic/dist/
