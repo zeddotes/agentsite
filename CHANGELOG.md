@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 — 2026-07-22
+
+### Next.js adapter (same package)
+
+- `agentsite/next` — `NextAgentSite` client wrapper
+- `agentsite/next/server` — `wantsJsonTwin`, `createLlmsTxtHandler`, `createAgentsMdHandler`, `createSkillMdHandler`, `buildJsonTwinPayload`, twin helpers
+- `next` is an optional peer dependency
+
 ## 0.1.0 — 2026-07-21
 
 ### Initial release

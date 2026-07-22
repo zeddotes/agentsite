@@ -1,6 +1,6 @@
 {
   "name": "agentsite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React primitives for authoring agent-first websites",
   "license": "MIT",
   "type": "module",
@@ -18,6 +18,16 @@
       "import": "./dist/payload.js",
       "require": "./dist/payload.cjs"
     },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js",
+      "require": "./dist/next.cjs"
+    },
+    "./next/server": {
+      "types": "./dist/next-server.d.ts",
+      "import": "./dist/next-server.js",
+      "require": "./dist/next-server.cjs"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [
@@ -29,7 +39,7 @@
     "**/*.css"
   ],
   "scripts": {
-    "build": "tsup && cp src/styles.css dist/styles.css && node scripts/inject-use-client.mjs dist/index.js dist/index.cjs",
+    "build": "tsup && cp src/styles.css dist/styles.css && node scripts/inject-use-client.mjs dist/index.js dist/index.cjs dist/next.js dist/next.cjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -37,8 +47,14 @@
     "prepublishOnly": "npm run test && npm run typecheck && npm run build"
   },
   "peerDependencies": {
+    "next": ">=14.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -46,6 +62,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "jsdom": "^26.1.0",
+    "next": "^15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tsup": "^8.4.0",
@@ -57,6 +74,7 @@
     "agent",
     "ai-agent",
     "react",
+    "nextjs",
     "agent-first",
     "sitemap",
     "json-twin",

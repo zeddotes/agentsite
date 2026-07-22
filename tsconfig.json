@@ -15,7 +15,11 @@
     "noUncheckedIndexedAccess": true,
     "jsx": "react-jsx",
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "paths": {
+      "agentsite": ["./src/index.ts"],
+      "agentsite/payload": ["./src/payload-entry.ts"]
+    }
   },
   "include": ["src"]
 }

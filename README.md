@@ -116,6 +116,53 @@ const twin = buildJsonTwinPayload({
 });
 ```
 
+## Next.js App Router
+
+`next` is an optional peer dependency. Subpath exports:
+
+```ts
+import { NextAgentSite } from "agentsite/next";
+import {
+  wantsJsonTwin,
+  createLlmsTxtHandler,
+  createAgentsMdHandler,
+  createSkillMdHandler,
+  buildJsonTwinPayload,
+} from "agentsite/next/server";
+```
+
+```ts
+// middleware.ts
+import { NextResponse, type NextRequest } from "next/server";
+import { wantsJsonTwin } from "agentsite/next/server";
+
+export function middleware(request: NextRequest) {
+  if (!wantsJsonTwin(request)) return NextResponse.next();
+  const url = request.nextUrl.clone();
+  url.searchParams.set("path", url.pathname);
+  url.pathname = "/api/twin";
+  return NextResponse.rewrite(url);
+}
+```
+
+```tsx
+// app/layout.tsx
+import { NextAgentSite } from "agentsite/next";
+import "agentsite/styles.css";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <NextAgentSite name="Demo" baseUrl="https://example.com" routes={[]}>
+          {children}
+        </NextAgentSite>
+      </body>
+    </html>
+  );
+}
+```
+
 ## Scripts
 
 ```bash
