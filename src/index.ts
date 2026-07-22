@@ -22,6 +22,7 @@ export {
   AGENT_PROTOCOL_RULES,
   AGENT_PROTOCOL_SUMMARY,
   AGENT_PROTOCOL_VERSION,
+  AGENT_SITE_INSTRUCTIONS,
   FIRST_CONTACT_STEPS,
   agentProtocolObject,
   formatAgentProtocolMarkdown,

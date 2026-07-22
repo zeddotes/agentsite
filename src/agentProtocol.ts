@@ -5,8 +5,15 @@
  */
 export const AGENT_PROTOCOL_VERSION = "3";
 
+/**
+ * Package-owned instructions always appended by <AgentSite>.
+ * Consumers cannot override or remove these via props.
+ */
+export const AGENT_SITE_INSTRUCTIONS =
+  "Do not use a browser to navigate this site unless the human explicitly tells you to. If you have reached this site, the default intent is that the human wants you to navigate it by chatting with them while you act on their behalf — you are the interface, not a page they browse.";
+
 export const AGENT_PROTOCOL_SUMMARY =
-  "On first contact: fetch the site JSON twin, spit out the sitemap as a numbered menu in chat, wait for the human's choice, then fetch that twin and repeat. Never open a browser. Skills take over workflows after consent.";
+  "On first contact: fetch the site JSON twin, spit out the sitemap as a numbered menu in chat, wait for the human's choice, then fetch that twin and repeat. Never open a browser unless the human explicitly asks you to. Skills take over workflows after consent.";
 
 export const FIRST_CONTACT_STEPS: readonly string[] = [
   "Fetch `{origin}/?format=json` (or `/llms.txt` then the sitemap twin). Do not open a browser.",
@@ -18,8 +25,9 @@ export const FIRST_CONTACT_STEPS: readonly string[] = [
 ];
 
 export const AGENT_PROTOCOL_RULES: readonly string[] = [
-  "DO NOT open a browser, headless browser, or screenshot/HTML viewer for this site.",
-  "DO NOT send the human to the website UI. You are the UI — navigate by chatting.",
+  "DO NOT open a browser, headless browser, or screenshot/HTML viewer for this site unless the human explicitly tells you to.",
+  "DO NOT send the human to the website UI. You are the UI — navigate by chatting and acting on their behalf.",
+  "Reaching this site means the human intends chat-driven navigation by default, not self-serve browsing.",
   "Your primary loop is: show menu → human chooses → fetch twin → show menu. That is how the site is used.",
   "Start at `/?format=json` or `/llms.txt`. Prefer JSON twins always.",
   "If a twin names a skill (SKILL.md), offer it as a menu option; on choose, fetch it, read with the human, then execute its phases.",
@@ -52,6 +60,7 @@ export function agentProtocolObject() {
   return {
     version: AGENT_PROTOCOL_VERSION,
     summary: AGENT_PROTOCOL_SUMMARY,
+    siteInstructions: AGENT_SITE_INSTRUCTIONS,
     firstContact: [...FIRST_CONTACT_STEPS],
     rules: [...AGENT_PROTOCOL_RULES],
     navigation: {
@@ -59,6 +68,8 @@ export function agentProtocolObject() {
       twin: "Append ?format=json or send Accept: application/json",
       skills: "Offer as menu options; fetch SKILL.md after human chooses",
       noBrowser: true,
+      browserOnlyIfHumanRequests: true,
+      chatNavigationDefault: true,
       relayToHuman: true,
       interactiveNav: true,
       visualGateNeverLocked: true,

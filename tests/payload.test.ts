@@ -15,6 +15,9 @@ describe("agentProtocol", () => {
     const protocol = agentProtocolObject();
     expect(protocol.version).toBe(AGENT_PROTOCOL_VERSION);
     expect(protocol.navigation.noBrowser).toBe(true);
+    expect(protocol.navigation.browserOnlyIfHumanRequests).toBe(true);
+    expect(protocol.navigation.chatNavigationDefault).toBe(true);
+    expect(protocol.siteInstructions).toContain("Do not use a browser");
     expect(protocol.firstContact.length).toBeGreaterThan(0);
     expect(protocol.rules.length).toBeGreaterThan(0);
   });

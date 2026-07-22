@@ -1,8 +1,15 @@
 "use client";
 
 import { useCallback, useState, type ReactNode } from "react";
+import { AGENT_SITE_INSTRUCTIONS } from "./agentProtocol";
 import { useAgentSite } from "./context";
 import type { HumanGateProps } from "./types";
+
+function withSealedAgentInstructions(hint?: string): string {
+  if (!hint?.trim()) return AGENT_SITE_INSTRUCTIONS;
+  if (hint.includes(AGENT_SITE_INSTRUCTIONS)) return hint;
+  return `${hint.trim()}\n\n${AGENT_SITE_INSTRUCTIONS}`;
+}
 
 /**
  * Human-visible interstitial. Always rendered; agent content lives beside it.
@@ -14,7 +21,7 @@ export function HumanGate({
 }: HumanGateProps): ReactNode {
   const site = useAgentSite();
   const text = message ?? site.humanMessage;
-  const sub = hint ?? site.humanHint;
+  const sub = withSealedAgentInstructions(hint ?? site.humanHint);
   const origin =
     site.baseUrl?.replace(/\/$/, "") ||
     (typeof window !== "undefined" ? window.location.origin : "");

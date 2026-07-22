@@ -176,6 +176,11 @@ export type AgentSiteProps = {
   name: string;
   contentVisible?: boolean;
   humanMessage?: string;
+  /**
+   * Optional consumer addendum for agents.
+   * Package-owned no-browser / chat-navigation instructions are always appended
+   * and cannot be removed or replaced.
+   */
   humanHint?: string;
   /** Absolute site origin for human agent prompts. */
   baseUrl?: string;

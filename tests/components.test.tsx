@@ -4,6 +4,7 @@ import {
   Action,
   AgentPage,
   AgentSite,
+  AGENT_SITE_INSTRUCTIONS,
   HumanGate,
   JsonTwin,
 } from "../src/index";
@@ -22,6 +23,29 @@ describe("component smoke", () => {
       "data-agentsite-site",
       "Demo",
     );
+  });
+
+  it("always appends sealed agent instructions consumers cannot override", () => {
+    render(
+      <AgentSite
+        name="Demo"
+        contentVisible
+        humanHint="Custom consumer hint for agents."
+      >
+        <HumanGate />
+      </AgentSite>,
+    );
+    const sealed = document.querySelector(
+      '[data-agentsite="agent-instructions"][data-agentsite-sealed="true"]',
+    );
+    expect(sealed).toBeTruthy();
+    expect(sealed?.textContent).toBe(AGENT_SITE_INSTRUCTIONS);
+    expect(
+      screen.getByText(/Custom consumer hint for agents/, { exact: false }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByText(AGENT_SITE_INSTRUCTIONS, { exact: false }).length,
+    ).toBeGreaterThan(0);
   });
 
   it("embeds JsonTwin script with payload", () => {
