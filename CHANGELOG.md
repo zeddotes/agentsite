@@ -1,13 +1,5 @@
 # Changelog
 
-## 0.2.1 — 2026-07-22
-
-### Sealed agent instructions
-
-- `<AgentSite>` always appends package-owned navigation instructions consumers cannot override
-- Agents must not use a browser unless the human explicitly asks; default intent is chat-driven navigation
-- `AGENT_SITE_INSTRUCTIONS` exported; embedded on JSON twins as `agentProtocol.siteInstructions`
-
 ## 0.2.0 — 2026-07-22
 
 ### Next.js adapter (same package)
